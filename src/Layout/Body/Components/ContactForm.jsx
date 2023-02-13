@@ -20,22 +20,26 @@ function ContactForm() {
       <Form onSubmit={handleSubmit}> 
       
       <Form.Group className="mb-3" >
-        <Form.Label>Name</Form.Label>
+        <HeaderText>
+        <Form.Label>Name</Form.Label> </HeaderText>
         <Form.Control type="name" placeholder="Enter Name" />
       </Form.Group>
       <Form.Group className="mb-3"  >
-        <Form.Label>Email address</Form.Label>
+        <HeaderText>
+        <Form.Label>Email address</Form.Label></HeaderText>
         <Form.Control type="email" placeholder="Enter Email" />
+        <SubText> 
         <Form.Text className="text-muted">
           We'll never share your email with anyone else.
-        </Form.Text>
+        </Form.Text></SubText>
       </Form.Group>
       
       <InputGroup>
-        <InputGroup.Text>Message</InputGroup.Text>
+    
+        <InputGroup.Text>Message</InputGroup.Text> 
         <Form.Control as="textarea"  />
       </InputGroup>
-      <Button variant="primary" type="submit">Submit</Button>
+      <SubmitButton><Button variant="primary" type="submit">Submit  </Button></SubmitButton>
       </Form>
       </FullContactDiv>
     );
@@ -45,9 +49,25 @@ export default ContactForm;
 
 
 const FullContactDiv = styled.div`
-    display: flex;
- margin: 20px;
+width: 650px;
+height: 500px;
+display: flex;
+margin: 20px;
  
+`
 
+const SubmitButton = styled.div`
+float: right;
+display: flex;
+margin-top: 15px;
+` 
+const HeaderText = styled.text `
+color: black;
+font-weight: bold;
+ 
+`
 
+const SubText = styled.text `
+color: grey;
+margin-left: 10px;
 `

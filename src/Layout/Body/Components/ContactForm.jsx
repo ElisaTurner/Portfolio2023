@@ -1,123 +1,53 @@
-import React, { useState, useEffect }  from 'react';
-import styled from 'styled-components/native'
-import { Container } from 'react-bootstrap';
+import React, { useState }   from 'react';
+import styled from 'styled-components'
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 function ContactForm() {
-    const [inputValues, setValue] = useState({
-        fullName: "",
-        email: "",
-        message: "",
-    });
-
-    const [validation, setValidation] = useState({
-        fullName: "",
-        email: "",
-        message: "",
-    });
-
-
-function handleChange(e) {
-    const { name, value} = e.target;
-    setValue({ ...inputValues, [name]: value });
-  }
-
-const validationCheck = () => {
-    let errors = validation;
-
-    if (!inputValues.fullName.trim()) {
-        errors.fullName = "fullName is required"; 
-    } else {
-        errors.fullName = "";
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [subject, setSubject] = useState('');
+    const [message, setMessage] = useState('');
+  
+    function handleSubmit(event) {
+      event.preventDefault();
+      // TODO: send Form data to server or API
     }
-    setValidation(errors);
-}
-
-const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
-useEffect(() => {
-    validationCheck();
-  }, [inputValues]);
-
-return (
-<div>
-  <form
-  method="POST"
-  onSubmit={handleSubmit}
-  >
-
-
-<FullNameInput> 
-fullName: 
-<input 
-    type="text"
-    placeholder="fullName"
-    
-    inputValues={inputValues}
-    className="input-field"
-    onChange={(e) =>  handleChange(e)}
-    value={inputValues.fullName} />
+  
+    return (
+       <FullContactDiv> 
+      <Form onSubmit={handleSubmit}> 
       
-    </FullNameInput>
-
-
-    <EmailInput> 
-Email:
-<input 
-    type="text"
-    placeholder="Email"
-   
-    className="input-field"
-    inputValues={inputValues}
-    onChange={(e) =>  handleChange(e)}
-    value={inputValues.email} 
-    />
-    </EmailInput>
-
-
-<MessageInput>
-Message:
-<input 
-    type="text"
-    placeholder="Message"
-    
-    className="input-field"
-    inputValues={inputValues}
-    onChange={(e) =>  handleChange(e)}
-    value={inputValues.Message} />
-    </MessageInput>
-
-
-<button> 
-    Submit
-</button>
-
-
-</form>
-</div>
- );
-};
+      <Form.Group className="mb-3" >
+        <Form.Label>Name</Form.Label>
+        <Form.Control type="name" placeholder="Enter Name" />
+      </Form.Group>
+      <Form.Group className="mb-3"  >
+        <Form.Label>Email address</Form.Label>
+        <Form.Control type="email" placeholder="Enter Email" />
+        <Form.Text className="text-muted">
+          We'll never share your email with anyone else.
+        </Form.Text>
+      </Form.Group>
+      
+      <InputGroup>
+        <InputGroup.Text>Message</InputGroup.Text>
+        <Form.Control as="textarea"  />
+      </InputGroup>
+      <Button variant="primary" type="submit">Submit</Button>
+      </Form>
+      </FullContactDiv>
+    );
+  }
 
 export default ContactForm;
 
-const FullNameInput = styled(Container)  `
-width: 100%;
-padding: 12px 20px;
-margin: 8px 0;
-box-sizing: border-box;
-`
 
-const EmailInput = styled(Container)  `
-width: 100%;
-padding: 12px 20px;
-margin: 8px 0;
-box-sizing: border-box;
-`
+const FullContactDiv = styled.div`
+    display: flex;
+ margin: 20px;
+ 
 
-const MessageInput = styled(Container)  `
-width: 100%;
-padding: 12px 20px;
-margin: 8px 0;
-box-sizing: border-box;
+
 `
